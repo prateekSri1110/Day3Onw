@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products with IIFE</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        background-color: #8685cc;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        background-color: #323ff5;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (function () {
+        function Product(title, desc, mrp) {
+          this.title = title;
+          this.desc = desc;
+          this.mrp = mrp;
+        }
+
+        Product.prototype.getDiscountedPrice = function (percent) {
+          var discountAmount = (this.mrp * percent) / 100;
+          return Math.round(this.mrp - discountAmount);
+        };
+
+        var percent = 15;
+
+        var content = [
+          new Product("iPhone 16 Pro", "Flagship Apple phone", 120000),
+          new Product("iPhone 17 Pro", "Future innovation", 140000),
+          new Product(
+            "Samsung Galaxy S24 Ultra",
+            "Powerful camera and performance",
+            110000
+          ),
+          new Product("Nokia C200", "Affordable and durable", 15000),
+        ];
+
+        var main = document.createElement("div");
+        main.className = "container mt-4 d-flex";
+
+        function renderProducts(products) {
+          products.forEach(function (item) {
+            var card = document.createElement("div");
+            card.className = "card mb-3 w-25 p-4 m-2 rounded";
+
+            var title = document.createElement("h3");
+            title.textContent = item.title;
+
+            var desc = document.createElement("p");
+            desc.textContent = item.desc;
+
+            var mrp = document.createElement("span");
+            mrp.textContent = "MRP: ₹" + item.mrp;
+            mrp.style.textDecoration = "line-through";
+            mrp.style.marginRight = "10px";
+
+            var discPrice = document.createElement("span");
+            discPrice.textContent =
+              "Sale Price: ₹" + item.getDiscountedPrice(percent);
+            discPrice.style.fontWeight = "bold";
+            discPrice.style.color = "lightgreen";
+
+            card.append(
+              title,
+              desc,
+              mrp,
+              document.createElement("br"),
+              discPrice
+            );
+            main.appendChild(card);
+          });
+
+          document.body.appendChild(main);
+        }
+
+        function showCostliest(products) {
+          var prices = products.map(function (p) {
+            return p.mrp;
+          });
+
+          var maxPrice = Math.max.apply(null, prices);
+          var costliest = products.find(function (p) {
+            return p.mrp === maxPrice;
+          });
+
+          var info = document.createElement("h2");
+          info.textContent =
+            "Price of costliest product is ₹" +
+            costliest.getDiscountedPrice(percent) +
+            " (" +
+            costliest.title +
+            ")";
+          info.className =
+            "container p-4 text-center text-white mt-5 bg-dark-subtle";
+          document.body.prepend(info);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          showCostliest(content);
+          renderProducts(content);
+        });
+      })();
+    </script>
+  </body>
+</html>
