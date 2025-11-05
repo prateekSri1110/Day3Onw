@@ -1,0 +1,59 @@
+SSH (Secure Shell)
+
+1. Find and terminate the top memory-consuming process on your system.
+ps aux --sort=-%mem || head -10  //ps - to list the current processes running on the system
+sudo kill -9 <PID> 		//terminate the process using PID
+
+2. Create a user named devops and grant them sudo privileges.
+create user 'devops' : sudo adduser devops
+grant sudo privileges : sudo usermod -aG sudo devops
+check : groups devops
+
+3. Connect to a remote server, create a directory, and copy files into it using SCP
+done
+
+4. List all active processes and save only those containing the word java into a file.
+ps aux | grep java > java_processes.txt
+
+5. Generate an SSH key pair and configure it for two different remote servers.
+ssh peaveen-kumar@192.168.1.39    (ssh username@<IP>)
+
+6. Find all lines containing “error” in /var/log/syslog and redirect them to errors_found.txt
+grep -i "error" /var/log/syslog > errors_found.txt
+
+7. Find all .conf files in /etc, sort them alphabetically, and save to conf_list.txt.
+Find all .conf files in /etc, sort them alphabetically, and save to conf_list.txt.
+sudo find /etc -name "*.conf" | sort > conf_list.txt
+
+8. Display the total number of unique shell types listed in /etc/passwd and save to shell_count.txt
+cut -d: -f7 /etc/passwd | sort -u | wc -l > shell_count.txt
+
+9. Explore vi/vim for  Creating a text file. Understand cursor movement, switching input mode (append, insert etc), deleting command, pasting content, undo , redo ,search , save and quit operations in vim. 
+vim file.txt
+i-insert
+:w - save
+:q - exit
+:q! - quit
+:wq or :x - save and exit
+cursor movement - a A o O b B
+delete - dd
+search - /(text to search)
+:w filename - save as ops
+/ \n - search new lines
+/set nu - display line no in editor
+
+10. Reset the current user password and reboot the system form shell. 
+passwd prateek-srivastava 
+Changing password for prateek-srivastava
+Current password: 
+New password: 
+Retype new password: 
+passwd: password updated successfully
+
+11. Zip the content of your home directory via tar and send it via scp to other person laptop. Unzip the content on other person laptop via tar. 
+a. create zip of dir via tar -> tar -cvf docs.tar /home/username/Documents/ -> docs.tar
+b. send to other person's laptop via SCP - scp doc.tar peaveen-kumar@10.1.210.31:/home/peaveen-kumar/Documents
+c. scp doc.tar peaveen-kumar@10.1.210.31:/home/peaveen-kumar/Documents
+
+12. Install and setup application via apt - mysql, postman, docker, dbeaver
+done
