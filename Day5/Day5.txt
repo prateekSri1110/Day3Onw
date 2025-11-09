@@ -1,0 +1,13 @@
+1. Configure SSH key in github account.
+
+2. Create a repository on github account.
+
+3. Clone the above repository on your local from github.
+
+4. Create a new file, say test.txt, in main/master branch. Make some changes to this file and commit the changes.
+
+5. Create two branches from main/master branch, say f1 and f2.
+
+6. How can you resolve a merge conflict in Git, provide an example.
+
+7. Show how divergence occurs in a branch.
