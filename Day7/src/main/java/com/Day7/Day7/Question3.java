@@ -1,12 +1,43 @@
 package com.Day7.Day7;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.*;
 
-@Getter
-@Setter
+// Write a Java program with two threads: Thread 1 prints table of number 2. Thread 2 prints table of number 4.
+// Threads should be synced to print output one by one.
+class syncedTable {
+    static boolean isTurn = false;
+
+    synchronized void TableOf2() {
+        for (int i = 1; i <= 10; i++) {
+            while (isTurn) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println(2 + " * " + i + " = " + 2 * i);
+            isTurn = true;
+            notify();
+        }
+    }
+
+    synchronized void TableOf4() {
+        for (int i = 1; i <= 10; i++) {
+            while (!isTurn) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println(4 + " * " + i + " = " + 4 * i);
+            isTurn = false;
+            notify();
+        }
+    }
+}
+
 public class Question3 {
     // Find the First Non-Repeating Character
     char NonRepeatingChar(String str) {
@@ -61,23 +92,6 @@ public class Question3 {
         return resList;
     }
 
-    // Write a Java program with two threads: Thread 1 prints table of number 2. Thread 2 prints table of number 4.
-    // Threads should be synced to print output one by one.
-    static class Table extends Thread {
-        private int num;
-
-        Table(int num) {
-            this.num = num;
-        }
-
-        @Override
-        public void run() {
-            System.out.println("Thread Table :-");
-            for (int i = 1; i <= 10; i++)
-                System.out.println(num + " X " + i + " = " + num * i);
-        }
-    }
-
     public static void main(String[] args) {
         Question3 q = new Question3();
 
@@ -90,9 +104,8 @@ public class Question3 {
         // Q5
         System.out.println(q.sorted(new ArrayList<>(Arrays.asList(1, 2, 3, 5, 8)), new ArrayList<>(Arrays.asList(1, 3, 4, 5, 9))));
         // Q6
-        Table t1 = new Table(2);
-        Table t2 = new Table(4);
-        t1.start();
-        t2.start();
+        syncedTable s = new syncedTable();
+        new Thread(() -> s.TableOf2()).start();
+        new Thread(() -> s.TableOf4()).start();
     }
 }
