@@ -1,0 +1,33 @@
+Exercise: React Routing and Protected Routes
+Problem Statement
+Create a small React application that demonstrates routing, protected routes, and navigation using React Router.
+Build a Login Page that contains only a single “Login” button.
+
+
+When the user clicks the button, assume the login is successful and navigate them to a protected route (e.g., /dashboard).
+
+
+Once logged in, the user should be able to access a protected area that contains two pages, for example:
+
+
+Counter Page: A page where the user can view a counter value that can be incremented or decremented by clicking respective buttons.
+
+
+Digital Watch Page: A page where the user can view a live digital clock that displays the current time and updates automatically every second.
+
+
+If a logged-in user tries to visit the /login route again, they should be redirected automatically to the /dashboard page.
+
+
+Implement a 404 Page that displays when a user tries to access any undefined route.
+
+
+Use an Outlet and a Layout Route to wrap your protected pages.
+
+
+The Layout component should include a navbar with links to “Counter” and “Digital Watch” pages.
+
+
+The Outlet will render the corresponding child routes based on navigation.
+
+Good to have, use localStorage to save the login details
