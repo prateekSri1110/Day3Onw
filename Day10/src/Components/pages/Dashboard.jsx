@@ -1,6 +1,6 @@
 import { Link, useNavigate, Outlet } from "react-router-dom";
-import dashboard from "../assets/dashboard.gif";
-import "../App.css";
+import dashboard from "../../assets/dashboard.gif";
+import "../../App.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();

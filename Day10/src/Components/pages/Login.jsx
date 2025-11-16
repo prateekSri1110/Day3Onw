@@ -1,4 +1,4 @@
-import cloudkeeper from "../assets/cloudkeeper.png";
+import cloudkeeper from "../../assets/cloudkeeper.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {

@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./Components/Login.jsx";
-import Dashboard from "./Components/Dashboard.jsx";
-import Error from "./Components/Error.jsx";
-import Counter from "./Components/Counter.jsx";
-import DigitalWatch from "./Components/DigitalWatch.jsx";
+import Login from "./Components/pages/Login.jsx";
+import Dashboard from "./Components/pages/Dashboard.jsx";
+import Error from "./Components/pages/Error.jsx";
+import Counter from "./Components/pages/Counter.jsx";
+import DigitalWatch from "./Components/pages/DigitalWatch.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 
 export default function App() {
